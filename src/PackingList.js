@@ -1,11 +1,11 @@
-function PackingList({ items }) {
+function PackingList({ items, onDeleteItem }) {
   return (
     <ul className="list">
       {items.map((val, ind, itemList) => {
         return (
           <li key={val.id}>
             <span> {val.description} {val.quantity} </span>
-            <button> ❌ </button>
+            <button onClick={()=>onDeleteItem(val.id)}> ❌ </button>
           </li>
         );
       })}

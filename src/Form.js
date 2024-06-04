@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 
-function Form({updateItems}) {
+function Form({onUpdateItems}) {
 
     const [description, setDescription] = useState("");
     const [quantity, setQuantity] = useState(1);
@@ -12,7 +12,7 @@ function Form({updateItems}) {
 
         if (!description) return
 
-        updateItems(description, quantity);
+        onUpdateItems(description, quantity);
     }
 
     return <div className='add-form'>
