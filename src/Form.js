@@ -1,17 +1,18 @@
 
 import { useState } from "react";
 
-function Form() {
+function Form({updateItems}) {
 
     const [description, setDescription] = useState("");
     const [quantity, setQuantity] = useState(1);
+    
 
     function submitHandler(e) {
         e.preventDefault();
 
         if (!description) return
 
-        console.log(e.target[1].value);
+        updateItems(description, quantity);
     }
 
     return <div className='add-form'>
