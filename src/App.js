@@ -8,7 +8,7 @@ import { useState } from "react";
 function App() {
   const [items, setItems] = useState([]);
 
-  function updateItems(description, quantity) {
+  function addItem(description, quantity) {
     setItems((items) => {
       return [
         ...items,
@@ -16,28 +16,34 @@ function App() {
           id: Date.now(),
           description: description,
           quantity: quantity,
+          packed: false
         },
       ];
     });
   }
 
   function deleteItem(id) {
-    console.log(id)
     setItems((items) => {
-      console.log(items.filter((val, ind, itemsList) => {
-        return val.id !== id
-      }))
       return items.filter((val, ind, itemsList) => {
         return val.id !== id
       })
     })
   }
 
+  function updatePackedStatusHandler(id) {
+    console.log("change status")
+    setItems(items => {
+      return items.map((value, index, itemsList) => {
+        return value.id === id ? {...value, packed:!value.packed}:{...value}
+      });
+    });
+  }
+
   return (
     <div className="App">
       <Logo />
-      <Form onUpdateItems={updateItems} />
-      <PackingList items={items} onDeleteItem={deleteItem}/>
+      <Form onAddItem={addItem} />
+      <PackingList items={items} onDeleteItem={deleteItem} OnUpdatePackedStatus={updatePackedStatusHandler}/>
       <Stats />
     </div>
   );

@@ -1,11 +1,19 @@
-function PackingList({ items, onDeleteItem }) {
+function PackingList({ items, onDeleteItem, OnUpdatePackedStatus }) {
   return (
     <ul className="list">
       {items.map((val, ind, itemList) => {
         return (
           <li key={val.id}>
-            <span> {val.description} {val.quantity} </span>
-            <button onClick={()=>onDeleteItem(val.id)}> ❌ </button>
+            <input
+              type="checkbox"
+              value={val.packed}
+              onChange={() => OnUpdatePackedStatus(val.id)}
+            />
+            <span className={`${val.packed ? "cross-out" : ""}`}>
+              {" "}
+              {val.description} {val.quantity}{" "}
+            </span>
+            <button onClick={() => onDeleteItem(val.id)}> ❌ </button>
           </li>
         );
       })}
