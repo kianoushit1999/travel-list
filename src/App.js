@@ -44,7 +44,7 @@ function App() {
       <Logo />
       <Form onAddItem={addItem} />
       <PackingList items={items} onDeleteItem={deleteItem} OnUpdatePackedStatus={updatePackedStatusHandler}/>
-      <Stats />
+      <Stats items={items}/>
     </div>
   );
 }
